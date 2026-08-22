@@ -28,8 +28,8 @@ export function PaymentFlow() {
 
       <div className="mt-6 flex h-52 items-end gap-3">
         {bars.map((b) => (
-          <div key={b.day} className="flex flex-1 flex-col items-center gap-2">
-            <div className="flex h-full w-full items-end justify-center gap-1.5">
+          <div key={b.day} className="flex h-full flex-1 flex-col items-center gap-2">
+            <div className="flex min-h-0 w-full flex-1 items-end justify-center gap-1.5">
               <div
                 className="w-3 rounded-full transition-all"
                 style={{ height: `${b.out}%`, background: "var(--chart-1)" }}
