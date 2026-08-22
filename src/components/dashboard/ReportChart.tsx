@@ -11,19 +11,21 @@ import {
 } from "recharts";
 
 const data = [
-  { month: "Jan", income: 1.2, spend: -1.0 },
-  { month: "Feb", income: 3.4, spend: -0.6 },
-  { month: "Mar", income: 7.6, spend: -0.4 },
-  { month: "Apr", income: 5.2, spend: -1.0 },
-  { month: "May", income: 9.1, spend: -0.5 },
-  { month: "Jun", income: 4.3, spend: -0.8 },
-  { month: "Jul", income: 8.4, spend: -0.3 },
-  { month: "Aug", income: 6.2, spend: -0.9 },
-  { month: "Sep", income: 7.1, spend: -0.4 },
-  { month: "Oct", income: 3.8, spend: -1.1 },
-  { month: "Nov", income: 8.8, spend: -0.6 },
-  { month: "Dec", income: 9.6, spend: -0.4 },
+  { month: "Jan", range: [-1.2, 1.4] as [number, number] },
+  { month: "Feb", range: [0.4, 3.6] as [number, number] },
+  { month: "Mar", range: [2.6, 8.4] as [number, number] },
+  { month: "Apr", range: [1.2, 5.4] as [number, number] },
+  { month: "May", range: [3.1, 9.6] as [number, number] },
+  { month: "Jun", range: [1.8, 4.3] as [number, number] },
+  { month: "Jul", range: [2.4, 8.8] as [number, number] },
+  { month: "Aug", range: [1.6, 6.4] as [number, number] },
+  { month: "Sep", range: [2.2, 7.4] as [number, number] },
+  { month: "Oct", range: [-0.6, 3.8] as [number, number] },
+  { month: "Nov", range: [3.4, 9.2] as [number, number] },
+  { month: "Dec", range: [4.2, 10.4] as [number, number] },
 ];
+
+const dimmed = new Set(["Jan", "Oct"]);
 
 const highlight = "Jun";
 
@@ -31,7 +33,7 @@ function ReportTooltip({ active, payload }: { active?: boolean; payload?: any[] 
   if (!active || !payload?.length) return null;
   return (
     <div className="rounded-lg border border-border bg-popover px-3 py-2 text-center shadow-lg">
-      <p className="font-display text-sm font-semibold">${payload[0].value}</p>
+      <p className="font-display text-sm font-semibold">${payload[0].payload.range[1]}</p>
       <p className="text-[10px] text-muted-foreground">Income</p>
     </div>
   );
@@ -57,9 +59,9 @@ export function ReportChart() {
         </div>
       </div>
 
-      <div className="mt-5 h-[300px] w-full">
+      <div className="mt-5 h-[420px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} barGap={-22} margin={{ top: 8, right: 4, left: -14, bottom: 0 }}>
+          <BarChart data={data} margin={{ top: 8, right: 4, left: -14, bottom: 0 }}>
             <CartesianGrid stroke="var(--border)" vertical={false} />
             <XAxis
               dataKey="month"
@@ -74,12 +76,17 @@ export function ReportChart() {
               tickFormatter={(v: number) => `$${v}K`}
             />
             <Tooltip content={<ReportTooltip />} cursor={{ fill: "var(--muted)", opacity: 0.3 }} />
-            <Bar dataKey="spend" radius={[6, 6, 6, 6]} barSize={22} fill="var(--chart-5)" />
-            <Bar dataKey="income" radius={[6, 6, 6, 6]} barSize={22}>
+            <Bar dataKey="range" radius={[8, 8, 8, 8]} barSize={26}>
               {data.map((d) => (
                 <Cell
                   key={d.month}
-                  fill={d.month === highlight ? "var(--primary-soft)" : "var(--chart-1)"}
+                  fill={
+                    d.month === highlight
+                      ? "var(--primary-soft)"
+                      : dimmed.has(d.month)
+                        ? "var(--chart-5)"
+                        : "var(--chart-1)"
+                  }
                 />
               ))}
             </Bar>
