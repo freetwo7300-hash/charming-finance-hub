@@ -130,12 +130,12 @@
 .dark {
   color-scheme: dark;
 
-  --background: oklch(0.145 0.021 271);
+  --background: oklch(0.115 0.018 274);
   --foreground: oklch(0.985 0.002 270);
-  --surface: oklch(0.185 0.023 271);
+  --surface: oklch(0.158 0.021 274);
   --surface-2: oklch(0.222 0.026 272);
 
-  --card: oklch(0.185 0.023 271);
+  --card: oklch(0.158 0.021 274);
   --card-foreground: oklch(0.985 0.002 270);
   --popover: oklch(0.205 0.025 271);
   --popover-foreground: oklch(0.985 0.002 270);
@@ -170,7 +170,7 @@
   --chart-4: oklch(0.72 0.13 230);
   --chart-5: oklch(0.35 0.04 275);
 
-  --sidebar: oklch(0.165 0.022 271);
+  --sidebar: oklch(0.135 0.019 274);
   --sidebar-foreground: oklch(0.985 0.002 270);
   --sidebar-primary: oklch(0.545 0.235 288);
   --sidebar-primary-foreground: oklch(0.99 0 0);
