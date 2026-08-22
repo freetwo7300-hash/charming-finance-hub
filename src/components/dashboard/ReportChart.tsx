@@ -76,7 +76,8 @@ export function ReportChart() {
               tickFormatter={(v: number) => `$${v}K`}
             />
             <Tooltip content={<ReportTooltip />} cursor={{ fill: "var(--muted)", opacity: 0.3 }} />
-            <Bar dataKey="range" radius={[8, 8, 8, 8]} barSize={26}>
+            <Bar dataKey="base" stackId="a" barSize={26} fill="transparent" isAnimationActive={false} />
+            <Bar dataKey="value" stackId="a" radius={[8, 8, 8, 8]} barSize={26}>
               {data.map((d) => (
                 <Cell
                   key={d.month}
@@ -90,6 +91,7 @@ export function ReportChart() {
                 />
               ))}
             </Bar>
+
           </BarChart>
         </ResponsiveContainer>
       </div>
