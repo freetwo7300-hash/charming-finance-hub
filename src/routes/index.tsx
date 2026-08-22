@@ -1,24 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
+import { BalanceCards } from "@/components/dashboard/BalanceCards";
+import { ReportChart } from "@/components/dashboard/ReportChart";
+import { TransactionHistory } from "@/components/dashboard/TransactionHistory";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Vorix — Finance Dashboard for Payments & Balances" },
+      {
+        name: "description",
+        content:
+          "Vorix finance dashboard: track balances, revenue, currency split and transaction history in one modern payments workspace.",
+      },
+      { property: "og:title", content: "Vorix — Finance Dashboard for Payments & Balances" },
+      {
+        property: "og:description",
+        content:
+          "Track balances, revenue, currency split and transaction history in one modern payments workspace.",
+      },
+    ],
+  }),
+  component: Dashboard,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Dashboard() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <DashboardLayout title="Dashboard">
+      <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,340px)_minmax(0,1fr)]">
+        <BalanceCards />
+        <ReportChart />
+      </div>
+      <div className="mt-5">
+        <TransactionHistory />
+      </div>
+    </DashboardLayout>
   );
 }
