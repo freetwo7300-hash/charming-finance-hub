@@ -32,6 +32,7 @@ export function SendMoney() {
           <input
             className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
             placeholder="Name, @handle or account number"
+            key={active}
             defaultValue={recipients[active]?.name}
           />
         </div>
