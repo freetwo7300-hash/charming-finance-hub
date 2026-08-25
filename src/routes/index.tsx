@@ -1,39 +1,43 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { BalanceCards } from "@/components/dashboard/BalanceCards";
-import { ReportChart } from "@/components/dashboard/ReportChart";
-import { TransactionHistory } from "@/components/dashboard/TransactionHistory";
+import { Nav } from "@/components/site/Nav";
+import { Hero } from "@/components/site/Hero";
+import { Stats } from "@/components/site/Stats";
+import { Projects } from "@/components/site/Projects";
+import { Expertise } from "@/components/site/Expertise";
+import { Experience } from "@/components/site/Experience";
+import { About } from "@/components/site/About";
+import { Contact, Footer } from "@/components/site/Contact";
+
+const title = "Mostafa Samir — Full Stack Engineer for Real Estate Platforms";
+const description =
+  "Senior full stack engineer building property listing portals, multi-tenant brokerage systems and real-time property dashboards with .NET 8, Angular and Next.js.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vorix — Finance Dashboard for Payments & Balances" },
-      {
-        name: "description",
-        content:
-          "Vorix finance dashboard: track balances, revenue, currency split and transaction history in one modern payments workspace.",
-      },
-      { property: "og:title", content: "Vorix — Finance Dashboard for Payments & Balances" },
-      {
-        property: "og:description",
-        content:
-          "Track balances, revenue, currency split and transaction history in one modern payments workspace.",
-      },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Dashboard,
+  component: Index,
 });
 
-function Dashboard() {
+function Index() {
   return (
-    <DashboardLayout title="Dashboard">
-      <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,340px)_minmax(0,1fr)]">
-        <BalanceCards />
-        <ReportChart />
-      </div>
-      <div className="mt-5">
-        <TransactionHistory />
-      </div>
-    </DashboardLayout>
+    <main id="top">
+      <Nav />
+      <Hero />
+      <Stats />
+      <Projects />
+      <Expertise />
+      <Experience />
+      <About />
+      <Contact />
+      <Footer />
+    </main>
   );
 }
