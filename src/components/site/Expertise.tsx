@@ -51,7 +51,7 @@ export function Expertise() {
       id="expertise"
       className="relative overflow-hidden bg-primary px-4 pt-32 pb-32 text-primary-foreground sm:pt-40 sm:pb-40"
     >
-      <WaveDivider position="top" className="text-background" />
+      
       <span
         aria-hidden="true"
         className="grid-paper-lg pointer-events-none absolute inset-0 opacity-[0.5]"
