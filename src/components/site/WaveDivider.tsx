@@ -5,12 +5,18 @@ type WaveDividerProps = {
   className?: string;
 };
 
-/* Gentle rolling sine: low amplitude (~±18 around y=50), smooth cubic
-   control points so the line never peaks sharply. Floor sits at y=110 so the
-   band of solid fill stays slim and the wave line reads as the feature. */
+/* Gentle rolling sine: low amplitude (~±18 around y=55), approximated with
+   four cubic Bezier quarter-waves whose control points are staggered so the
+   crest/trough is rounded, never flat. Floor sits at y=110 so the band of solid
+   fill stays slim and the wave line reads as the feature. */
 const VIEW_H = 110;
 const PATH =
-  "M0,55 C160,37 320,37 480,55 C640,73 800,73 960,55 C1120,37 1280,37 1440,55 L1440,110 L0,110 Z";
+  "M0,55 " +
+  "C129.6,55 230.4,37 360,37 " +
+  "C489.6,37 590.4,55 720,55 " +
+  "C849.6,55 950.4,73 1080,73 " +
+  "C1209.6,73 1310.4,55 1440,55 " +
+  "L1440,110 L0,110 Z";
 
 /**
  * Layered SVG wave that blends a section edge into the neighbouring surface.
