@@ -113,7 +113,7 @@ export function Expertise() {
         </div>
       </div>
 
-      
+      <WaveDivider position="bottom" className="text-background" />
     </section>
   );
 }
