@@ -1,5 +1,5 @@
 import { Reveal } from "./Reveal";
-import { WaveDivider } from "./WaveDivider";
+
 import { SectionHeader } from "./SectionHeader";
 
 const pillars = [
